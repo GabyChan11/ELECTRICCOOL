@@ -1,0 +1,44 @@
+.profile-heading {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.profile-img-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.i-profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.empty-icon {
+    font-size: 120px;
+    color: #ffffff;
+}
+
+.photo-btn {
+    margin: 16px 0;
+}
+
+.profile-info {
+    margin: 16px 0;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.profile-email {
+    font-size: 1rem;
+    color: #ffffff;
+}

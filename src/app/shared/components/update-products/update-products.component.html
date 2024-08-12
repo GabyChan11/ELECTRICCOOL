@@ -1,0 +1,57 @@
+<app-header [isModal]="true" [title]="products ? 'Actualizar producto': 'Agregar producto'"></app-header>
+
+<ion-content>
+
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()">
+
+    <ion-avatar *ngIf="form.value.img">
+      <img [src]="form.value.img" />
+    </ion-avatar>
+
+    <ion-icon class="img-icon" *ngIf="!form.value.img" name="image-outline"></ion-icon>
+
+    <br>
+
+    <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+      Tome/Seleccione una foto
+    </ion-button>
+
+    <app-login-input automplete="name" type="text" label="Nombre" [control]="form.controls.nombre"></app-login-input>
+
+    <div class="validators" *ngIf="form.controls.nombre.errors && form.controls.nombre.touched">
+      <div *ngIf="form.controls.nombre.errors?.['required']">El nombre es requerido</div>
+      <!-- <div *ngIf="form.controls.name.errors?.['minLength']">El nombre debe contener 3 caracteres</div> -->
+    </div>
+
+    <app-login-input automplete="marca" type="text" label="Marca" [control]="form.controls.marca"></app-login-input>
+
+    <div class="validators" *ngIf="form.controls.marca.errors && form.controls.marca.touched">
+      <div *ngIf="form.controls.marca.errors?.['required']">La marca es requerida</div>
+    </div>
+
+    <app-login-input automplete="precio" type="number" label="Precio" [control]="form.controls.precio"
+      (ionInput)="setNumberInput()"></app-login-input>
+
+    <div class="validators" *ngIf="form.controls.precio.errors && form.controls.precio.touched">
+      <div *ngIf="form.controls.precio.errors?.['required']">El precio es requerido</div>
+    </div>
+
+    <app-login-input automplete="cantidad" type="number" label="Cantidad"
+      [control]="form.controls.cantidad"></app-login-input>
+
+    <div class="validators" *ngIf="form.controls.cantidad.errors && form.controls.cantidad.touched">
+      <div *ngIf="form.controls.cantidad.errors?.['required']">La cantidad es requerida</div>
+    </div>
+
+
+
+
+    <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
+      {{products ? 'Actualizar producto': 'Agregar producto'}}
+      <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-button>
+
+  </form>
+
+</ion-content>

@@ -1,0 +1,78 @@
+<app-header [showMenu]="true" title="Herramientas"></app-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card mode="ios" class="hm d-flex-center ion-text-center" *ngIf="!loading && tool ">
+    <div>
+      <h5>{{ tool.length }}</h5>
+      <p>Productos</p>
+    </div>
+
+  </ion-card>
+
+  <ion-list *ngIf="!loading">
+    <ion-item-sliding class="product-item" *ngFor="let herramienta of tool">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="herramienta.img" alt="">
+        </ion-avatar>
+        <ion-label>
+          <div class="name">{{ herramienta.nombre }}</div>
+          <div class="data">
+            <strong>Marca: </strong> {{ herramienta.marca }} <br>
+            <strong>Precio </strong> {{ herramienta.estado}} <br>
+            <strong>Fecha de ingreso: </strong> {{ herramienta.fecha}} <br>
+
+          </div>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options *ngIf="user()?.role === 'admin'" >
+
+        <ion-item-option (click)="addUpdateProducts(herramienta)">
+          <ion-icon class="option-btn" name="create-outline"></ion-icon>
+        </ion-item-option>
+
+        <ion-item-option (click)="confirmDeleteProducts(herramienta)" color="danger">
+          <ion-icon class="option-btn" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list *ngIf="loading">
+    <ion-item-sliding class="tool-item" *ngFor="let herramienta of [1,1,1,1,1,1,1]">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <div>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </div>
+
+        </ion-label>
+      </ion-item>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <div class="empty" *ngIf="!loading && !tool.length">
+    <ion-icon name="construct-outline" style="font-size: 48px; color: #ffffff;"></ion-icon>
+    <h3>No hay herramientas disponibles</h3>
+  </div>
+
+
+  <ion-fab *ngIf="user()?.role === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="addUpdateProducts()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

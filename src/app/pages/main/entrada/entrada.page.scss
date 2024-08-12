@@ -1,0 +1,38 @@
+.custom-button {
+  --background: #3498db; /* Sin fondo */
+  --border-radius: 20px; /* Bordes redondeados */
+  --border-width: 10px; /* Ancho del borde */
+  --border-color: rgb(0, 0, 0); /* Color del borde */
+}
+
+
+    .custom-title {
+        color: #000000; /* Color azul */
+        font-size: 20px; /* Tamaño grande */
+        font-weight: bold; /* Negrita */
+      }
+    .bt{
+        font-size: 13px;
+    }
+      .custom-header {
+        --background: #3498db; /* Cambia esto al color que desees */
+        --color: rgb(0, 0, 0); /* Cambia esto al color del texto que desees */
+      }
+    
+      
+    @-webkit-keyframes rotate-center{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes rotate-center{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
+    .container{
+        -webkit-animation:rotate-center 1s ease-in-out both;animation:rotate-center 1s ease-in-out both;
+        img{
+            height: 200px;
+            margin-top: 10%;
+            
+        }
+    
+        
+    }
+    
+    .card{
+        --background: #ffffff;
+        --color: rgb(0, 0, 0);
+    }

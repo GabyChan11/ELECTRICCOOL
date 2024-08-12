@@ -1,0 +1,108 @@
+<app-header [showMenu]="true" title="Finanzas"></app-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-list id="finance-content" *ngIf="!loading">
+
+    <ion-card mode="ios"  class="hm d-flex-center ion-text-center" *ngIf="!loading && appliance" >
+      <div>
+        <p>Electrodomesticos</p>
+      </div>
+    </ion-card>
+    <ion-item-sliding class="product-item" *ngFor="let electrodomestico of appliance">
+      <ion-item>
+        <ion-avatar slot="start" >
+          <img [src]="electrodomestico.img" alt="">
+        </ion-avatar>
+        <ion-label>
+          <div class="name">{{ electrodomestico.nombre }}</div>
+          <div class="data">
+            <strong>Estado del electrodomestico: </strong> {{ electrodomestico.estado }} <br>
+            <strong>Fecha de ingreso: </strong> {{ electrodomestico.fecha}} <br>
+            <strong>Marca: </strong> {{ electrodomestico.marca }} <br>
+            <strong>Garantia (meses): </strong> {{ electrodomestico.garantia }} <br>
+            <strong>Precio: </strong> {{ electrodomestico.precio| currency: 'MXN' }} <br>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+
+
+
+    <ion-card mode="ios" class="hm d-flex-center ion-text-center" *ngIf="!loading && provider">
+      <div>
+        <h4>Proveedores</h4>
+      </div>
+    </ion-card>
+    <ion-item-sliding class="product-item" *ngFor="let proveedor of provider">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="proveedor.img" alt="">
+        </ion-avatar>
+        <ion-label>
+          <div class="name">{{ proveedor.nombre }}</div>
+          <div class="data">
+            <strong>Correo: </strong> {{ proveedor.email }} <br>
+            <strong>Teléfono: </strong> {{ proveedor.telefono}} <br>
+            <strong>Dirección: </strong> {{ proveedor.direccion}} <br>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+
+
+    <ion-card mode="ios" class="hm d-flex-center ion-text-center" *ngIf="!loading && provider">
+      <div>
+        <h4>Clientes</h4>
+      </div>
+    </ion-card>
+    <ion-item-sliding class="product-item" *ngFor="let cliente of client">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="cliente.img" alt="">
+        </ion-avatar>
+        <ion-label>
+          <div class="name">{{ cliente.nombre }}</div>
+          <div class="data">
+            <strong>Direccion: </strong> {{ cliente.direccion }} <br>
+            <strong>Teléfono </strong> {{ cliente.telefono}} <br>
+            <strong>Correo: </strong> {{ cliente.email}} <br>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+
+  <ion-list *ngIf="loading">
+    <ion-item-sliding class="product-item" *ngFor="let electrodomestico of [1,1,1,1,1,1,1]">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <div>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <div class="empty" *ngIf="!loading && !provider.length">
+    <ion-icon name="cash-outline" style="font-size: 48px; color: #ffffff;"></ion-icon>
+    <h3>No hay Finanzas disponibles</h3>
+  </div>
+
+  <ion-button *ngIf="!loading && user()?.role === 'admin'" (click)="downloadFinancePDF()" expand="full"
+    class="ion-margin-top">
+    Descargar PDF
+  </ion-button>
+
+</ion-content>

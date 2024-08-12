@@ -1,0 +1,76 @@
+<app-header [showMenu]="true" title="Proveedores"></app-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card mode="ios" class="hm d-flex-center ion-text-center" *ngIf="!loading && provider ">
+    <div>
+      <h5>{{ provider.length }}</h5>
+      <p>Numero de Proveedores</p>
+    </div>
+  </ion-card>
+
+  <ion-list *ngIf="!loading">
+    <ion-item-sliding class="product-item" *ngFor="let proveedor of provider">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="proveedor.img" alt="">
+        </ion-avatar>
+        <ion-label>
+          <div class="name">{{ proveedor.nombre }}</div>
+          <div class="data">
+            <strong>Correo: </strong> {{ proveedor.email }} <br>
+            <strong>Teléfono: </strong> {{ proveedor.telefono}} <br>
+            <strong>Dirección: </strong> {{ proveedor.direccion}} <br>
+
+          </div>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options >
+
+        <ion-item-option (click)="addUpdateEmployee(proveedor)">
+          <ion-icon class="option-btn" name="create-outline"></ion-icon>
+        </ion-item-option>
+
+        <ion-item-option (click)="confirmDeleteEmployee(proveedor)" color="danger">
+          <ion-icon class="option-btn" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list *ngIf="loading">
+    <ion-item-sliding class="product-item" *ngFor="let proveedor of [1,1,1,1,1,1,1]">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <div>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </div>
+
+        </ion-label>
+      </ion-item>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <div class="empty" *ngIf="!loading && !provider.length">
+    <ion-icon name="business-outline" style="font-size: 48px; color: #ffffff;"></ion-icon>
+    <h3>No hay proveedores disponibles</h3>
+  </div>  
+
+  <ion-fab  vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="addUpdateEmployee()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

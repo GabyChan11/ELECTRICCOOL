@@ -1,0 +1,57 @@
+<app-header backButton="/auth" title="REGISTRARSE"></app-header>
+
+<ion-content>
+  <div class="d-flex-center">
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form" (keypress.enter)="submit()" >
+      
+      <app-logo></app-logo>
+
+      <app-login-input
+      automplete="name"
+      type="text"
+      label="Nombre"
+      icon="person"
+      [control]="form.controls.name"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched">
+      </div>
+
+      <app-login-input
+      automplete="email"
+      type="email"
+      label="Correo"
+      icon="mail"
+      [control]="form.controls.email"
+      ></app-login-input>
+      <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+      </div>
+
+      <app-login-input
+      automplete="role"
+      type="text"
+      label="Rol (admin/user)"
+      icon="people"
+      [control]="form.controls.role"
+      ></app-login-input>
+      <div class="validators" *ngIf="form.controls.role.errors && form.controls.role.touched">
+      </div>
+      
+      <app-login-input
+      type="password"
+      label="Contraseña"
+      icon="lock-closed"
+      [control]="form.controls.password"
+      ></app-login-input>
+      <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched">
+      </div>      
+
+      <ion-button class="submit" type="submit" expand="block" mode="ios" fill="outline" [disabled]="form.invalid">
+        Registrarse
+      </ion-button>
+
+    </form>
+
+  </div>
+</ion-content>

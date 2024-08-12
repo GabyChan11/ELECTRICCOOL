@@ -1,0 +1,19 @@
+<app-header [showMenu]="true" title="Perfil"></app-header>
+
+<ion-content class="ion-padding-top ion-text-center profile-content">
+
+  <div class="profile-img-container">
+    <img class="i-profile" *ngIf="user()?.img" [src]="user()?.img" alt="Foto de perfil">
+    <ion-icon *ngIf="!user()?.img" class="empty-icon" name="person-circle-outline"></ion-icon>
+  </div>
+
+  <ion-button class="photo-btn" (click)="takeImage()" mode="ios" size="small" shape="round">
+    <ion-icon slot="" name="camera-outline"></ion-icon>
+  </ion-button>
+
+  <div class="profile-info">
+    <h3 class="profile-name">{{ user()?.name }}</h3>
+    <h3 class="profile-email">{{ user()?.email }}</h3>
+  </div>
+</ion-content>
+

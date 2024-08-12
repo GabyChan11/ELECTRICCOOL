@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar class="custom-header">
+    <ion-title class="custom-title">
+      ELECTRIC-COOL
+    </ion-title>
+    <ion-buttons  slot="end">
+      <ion-button class="bt" routerLink="/auth">
+        INICIAR 
+        <br>SESIÓN
+      </ion-button>
+      <ion-button class="bt" routerLink="/auth/sign-up">
+        REGISTRARSE
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container ion-text-center">
+    <img src="assets/img/logo.png">
+  </div>
+
+  <div class="ion-text-center">
+    
+    <ion-card class="card">
+      <img src="assets/img/venta1.jpg">
+      <ion-card-header>
+        <ion-card-title class="card">VENTA</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Contamos con diferente tipo de ventas en nuestro negocio, desde electrodomésticos hasta refacciones.
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card class="card">
+      <img src="assets/img/mantenimiento.jpg" />
+      <ion-card-header>
+        <ion-card-title class="card">MANTENIMIENTO</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Realizamos servicio de manteniminto y reparaciones a:
+        <br>-Televisores 
+        <br>-Laptops
+        <br> -Bocinas
+        <br>-Ventiladores 
+        <br>Y cualquier electrodoméstico.
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card class="card">
+      <img src="assets/img/tecnico.jpg" />
+      <ion-card-header>
+        <ion-card-title class="card">TÉCNICOS</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Tenemos técnicos especializados, los cuales realizan servicio a domicilio.
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+  <div>
+<h4>CONTÁCTANOS:</h4>
+
+
+  <ion-button class="custom-button" expand="block" (click)="openFacebook()">Ir a Facebook</ion-button>
+  <ion-button class="custom-button" expand="block" (click)="openWhatsApp()">Contactar por WhatsApp</ion-button>
+</div>
+</ion-content>

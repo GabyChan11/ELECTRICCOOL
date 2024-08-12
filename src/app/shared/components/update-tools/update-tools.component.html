@@ -1,0 +1,72 @@
+<app-header [isModal]="true" [title]="tool ? 'Actualizar herramienta': 'Agregar herramienta'"></app-header>
+
+<ion-content>
+  
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()" >
+      
+      <ion-avatar *ngIf="form.value.img">
+        <img [src]="form.value.img" />
+      </ion-avatar>
+
+      <ion-icon class="img-icon" *ngIf="!form.value.img" name="image-outline"></ion-icon>
+
+      <br>
+
+      <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+        Tome/Seleccione una foto 
+      </ion-button>
+
+      <app-login-input
+      automplete="name"
+      type="text"
+      label="Nombre"      
+      [control]="form.controls.nombre"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.nombre.errors && form.controls.nombre.touched">
+        <div *ngIf="form.controls.nombre.errors?.['required']">El nombre es requerido</div>
+        <!-- <div *ngIf="form.controls.name.errors?.['minLength']">El nombre debe contener 3 caracteres</div> -->
+      </div>
+
+      <app-login-input
+      automplete="marca"
+      type="text"
+      label="Marca de la herramienta"      
+      [control]="form.controls.marca"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.marca.errors && form.controls.marca.touched">
+        <div *ngIf="form.controls.marca.errors?.['required']">La marca es requerida</div>
+      </div>
+
+      <app-login-input
+      automplete="cargo"
+      type="text"
+      label="Estado (Nueva/Usada)"      
+      [control]="form.controls.estado"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.estado.errors && form.controls.estado.touched">
+        <div *ngIf="form.controls.estado.errors?.['required']">El estado es requerido</div>        
+      </div>
+
+      <app-login-input
+      automplete="fecha"
+      type="date"
+      label="Fecha de ingreso"      
+      [control]="form.controls.fecha"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.fecha.errors && form.controls.fecha.touched">
+        <div *ngIf="form.controls.fecha.errors?.['required']">La fecha es requerida</div>        
+      </div>
+      
+      <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
+        {{tool ? 'Actualizar herramienta': 'Agregar herramienta'}}
+        <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+      </ion-button>      
+  
+    </form>
+
+</ion-content>

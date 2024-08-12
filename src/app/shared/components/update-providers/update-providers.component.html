@@ -1,0 +1,75 @@
+<app-header [isModal]="true" [title]="provider ? 'Actualizar proveedor': 'Agregar proveedor'"></app-header>
+
+<ion-content>
+  
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()" >
+      
+      <ion-avatar *ngIf="form.value.img">
+        <img [src]="form.value.img" />
+      </ion-avatar>
+
+      <ion-icon class="img-icon" *ngIf="!form.value.img" name="image-outline"></ion-icon>
+
+      <br>
+
+      <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+        Tome/Seleccione una foto 
+      </ion-button>
+
+      <app-login-input
+      automplete="name"
+      type="text"
+      label="Nombre"      
+      [control]="form.controls.nombre"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.nombre.errors && form.controls.nombre.touched">
+        <div *ngIf="form.controls.nombre.errors?.['required']">El nombre es requerido</div>
+        <!-- <div *ngIf="form.controls.name.errors?.['minLength']">El nombre debe contener 3 caracteres</div> -->
+      </div>
+
+      <app-login-input
+      automplete="telefono"
+      type="number"
+      label="Telefono del proveedor"      
+      [control]="form.controls.telefono"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.telefono.errors && form.controls.telefono.touched">
+        <div *ngIf="form.controls.telefono.errors?.['required']">El telefono es requerido</div>
+      </div>
+
+      <app-login-input
+      automplete="email"
+      type="text"
+      label="Correo del proveedor"      
+      [control]="form.controls.email"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+        <div *ngIf="form.controls.email.errors?.['required']">El correo es requerido</div>        
+      </div>
+
+      <app-login-input
+      automplete="direccion"
+      type="text"
+      label="Direccion del proveedor"      
+      [control]="form.controls.direccion"
+      ></app-login-input>
+      
+      <div class="validators" *ngIf="form.controls.direccion.errors && form.controls.direccion.touched">
+        <div *ngIf="form.controls.direccion.errors?.['required']">La direccion es requerida</div>        
+      </div>
+      
+
+      
+
+      <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
+        {{provider ? 'Actualizar proveedor': 'Agregar proveedor'}}
+        <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+      </ion-button>      
+
+    </form>
+
+</ion-content>
